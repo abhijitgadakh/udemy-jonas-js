@@ -1,0 +1,259 @@
+--------------SECTION 2----------------
+- Console Tab On Chrome
+- Function alert 
+
+- JavaScript Defination
+  JavaScript is a high-level, Object oriented, multi-paradigm programming language.
+
+  high-level - complex things kept away from programmers
+  Object oriented - most of the data is based on object
+  multi-paradigm -  styles to structure of code (imperative and declarative)
+  programming language - lang in which instruction are given to system
+  
+
+- Use Case of JavaScript
+  HTML - Responsible for content on a page (text, img, etc)
+  CSS - Styling of content
+  JS - Real programming language
+        to add dynamic and interactive effect to webpages
+        to manipulate the content or css styles 
+        load data from remote server
+
+JavaScript Releases
+ Huge update on 2015 (ES6/ES2015)
+
+Morden Javascript
+(ES6/ES2015)->(ES7/ES2016)->(ES8/ES2017)->(ES9/ES2018)->.....
+
+ES - ECMAScript
+
+
+--VALUES AND VARIABLES--
+
+Naming Conventions
+- follow camel-casing
+- cannot start with uppercase
+- constants name ALL ALPHABETS UPPERCASE
+- variable name should be descriptive but try to keep it as short as possible
+
+Naming Rule
+- cannot starts with number
+- can contain only numbers, alphabets, uderscore and dollar symbol
+- cannot use reserved keywords (new, function, etc)
+- name is reserved keywords but can be used sometimes without issue (but avoid to use)
+
+
+--Datatypes--
+
+1. Primitive types
+
+  i.   Numbers (decimals and integers)
+  ii.  String (text)
+  iii. Boolean (true or false)
+  iv.  Undefined (variable declared but not yet defined)
+  v.   Null (empty value)
+  vi.  Symbols(from ES2015) valued is unique and can't be changed
+  vii. BigInt (from ES2020) larger integer than the Number type can hold
+
+
+
+  NOTE: In JavaScript value has data type variable do not due to which we dont mention which data type perticular variable should hold. also we can change values having different data type to variable
+
+
+  SPECIAL OPERATOR: typeof
+  gives you data type of a value or variable
+
+let JavascriptIsFun = true;
+console.log(typeof JavascriptIsFun); //boolean
+console.log(typeof "hello"); //string
+console.log(typeof true); // boolean
+console.log(typeof 99.999); //number
+
+-- Dynamic typing --
+
+changing datatype of value variable holding
+
+let JavascriptIsFun = true;
+JavascriptIsFun = "Yes!";
+
+
+//BUG In js 
+typeof null -> Object
+this never get corrected due to legacy reason
+
+
+-- let, const, var --
+
+var - old JavaScript
+let, consnt - Morden JavaScript
+
+if variable needs to be mutable then use let
+if variable needs to be immutable then use const
+
+if variable is declare with const then you have to initialize this variable at the time of declaration
+
+var keyword - before ES6
+almost similer to let varible
+
+it is not required to declare varible with any keyword but should not because it'll create this variable in global scope instead of current scope
+
+
+-- BASIC OPERATOR --
+
+Operator allows us tramsform or combine multiple values
+
+types of Operator -
+Mathematical operator, comparison operator, logical operator, assignment operator, etc. 
+
+
+Mathematical operator + - / * **
+Assignment operator = '+=', '-=', '*=', '/=', '++', '--'
+comparison operator (result will always be boolean) > < >= <=
+logical operator && || !
+Conditional/Ternary Operator ? :
+
+** means power of 
+e.g. 2 ** 3 ---> 2 * 2 * 2
+
++ use to addition of two number and also used to join to string
+
+--OPERATION PRECEDENCE--
+
+Mathematical operator get executed before comparison operators
+left to right
+right to left
+
+
+--Strings and Template Literals--
+
+e.g. `text ${variable or expression}`
+
+-- Type Conversion and Coercion
+Conversion - When programmers tries to convert from one type to another
+Coercion - When Compiler automatically converts from one type to another (completly hidden from programmers)
+
+
+
+--Type Conversion--
+programmers can only convert to Number String or Boolean
+
+const year = '1991';
+const age = 10;
+
+year + age ---> will be 199120 in this case Conversion (programmers need to convert)
+Number(year)+age --> will be 2011
+
+const name = "Abhijit";
+
+Number(name) --> "NaN" When js fails to produce a number which basically means invalid number
+if you do typeof NaN -> it gives Number
+
+
+example
+const year = '1991';
+const isOld = true;
+
+const year2 = Number(year);
+const isOld = String(isOld);
+
+
+--Type Coercion--
+
+conole.log("I am " + 23 + " years old."); automatically converts 23 to String
+
+"10" + 1 ====> 101 but "23" - "10" - 1 = 9
+
+"10" + 1 ====> 101 "+" will convert to String
+"23" - "10" - 1 = 9 "-" will convert to Number
+
+
+--- Truthy and Falsy Values ---
+
+Falsy Values - values which are not False but will be false after converted into boolean
+Truthy Values - values which will be true after converted into boolean
+
+There are total 5 Falsy Values
+1. 0
+2. "" (empty string)
+3. Undefined
+4. null
+5. NaN
+
+Everything other than these five values are Truthy Values
+
+console.log(Boolean(0));
+console.log(Boolean(""));
+console.log(Boolean(Undefined));
+console.log(Boolean(null));
+console.log(Boolean(NaN));
+
+-- Equality Operator --
+
+difference between == and ===
+
+= is assignment operator and == or === Equality operator
+
+=== strictly check data type and value are same or not (Strickly equal)
+== it performs Type Coercion if possible and then just check if values are same or not (Loosly equal)
+
+!= and !==
+
+!== strictly check data type and value are same or not (Strickly equal)
+!= it performs Type Coercion if possible and then just check if values are same or not (Loosly equal)
+
+--boolean logic--
+
+and or not operator
+
+and -->  both conditions need to be true
+true true--> true
+false true--> false
+true false--> false
+false false--> false
+
+
+or --> at least one needs to be true
+true true--> true
+false true--> true
+true false--> true
+false false--> false
+
+--SWITCH CASE--
+
+--Statements and Expression--
+
+Expression -> code which produce a value
+e.g. 5+4 |  5  |  (true || false)
+
+Statements -> piece of code which do not produce a value
+
+e.g if-else Statements | variable declaration/initialization
+
+NOTES: template literals expected Expression in ${}
+
+
+--Conditional/Ternary Operator --
+
+condition ? if condition true : if condition false
+
+this produce a value so it is an expression
+
+--JavaScript Releases ES5, ES6+ and ESNext
+
+1995 - Brendan Eich - 1st version of Javascript (Mocha) - 10 days
+1996 - name changed from mocha to Javascript
+        microsoft launched IE - copying from js and named JavaScript
+
+1997 - to standerized the lang ECMA Released ES1 (ECMAScript)
+
+2009 - ES5 released
+
+2015 - ES6 -Biggest Update to lang Everything
+        from this annaual release cycle
+
+JavaScript has backward compability (other lang don't)
+JavaScript is not forward compability
+Don't break the language
+
+transpilling and pollyfilling
+converT morden js code to ES5
