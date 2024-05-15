@@ -1,0 +1,7 @@
+EXTENTIONS
+1.Prettier
+1.TODO Highlight
+
+Installation 1
+1. Latest version of NODE
+2. npm install live-server -g
