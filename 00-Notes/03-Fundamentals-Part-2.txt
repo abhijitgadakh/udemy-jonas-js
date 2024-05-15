@@ -1,0 +1,192 @@
+---SECTION 3-----
+
+-------------
+STRICT MODE
+-------------
+
+syntax-> 'use strict'
+- should be first line of page
+- it gives error which javasript ignores
+- also restrict us from using reserved word (if, class, interface, function) and gives error
+
+=======================================================================================
+
+-------------
+function
+-------------
+
+- calling, running or invoking function all means same
+- based in DRY Principle - (Don't Repeat Yourself)
+
+Function Declarations vs. Expressions
+
+Function written using Function Declarations can be called before that function but Function written using Function Expressions cannot be called before that function it'll give error
+
+
+
+Function Declarations
+function calcAge1(birthYear) {
+  return 2037 - birthYear;
+}
+
+Function Expressions
+const calcAge2 = function (birthYear) {
+  return 2037 - birthYear;
+};
+
+
+Parameter and argument
+
+Parameter - placeholder in function Declaration
+argument - actual values while caling a function
+
+
+
+---Arrow Functions---
+- Arrow Functions do not get it's own "this" keyword
+const calcAge3 = ()=>{}
+
+
+--- Function calling Function ---
+
+========================================================================
+-------------
+Introduction to Arrays
+-------------
+
+-index base
+- 0 based. element indexing starts from 0
+- in Arrays order of elements does matters
+  means you can retrive elements by order in Arrays
+
+Two ways to create Arrays
+1. Literal Syntax of creating array
+const friends = ["Michael", "Steven", "Peter"];
+
+2. Using new keyword
+const years = new Array(1996, 2020, 1984, 2008);
+
+- to get element at perticular index
+arrayname[index] -> this will give you element at given index 
+
+- to get length of array (how many elements are in array)
+arrayname.length
+
+- to get last element of array
+arrayname[arrayname.length - 1] -> - 1 because index starts from 0
+
+--- Array Methods ---
+
+1. to add new element at end ---> array.push(element)
+this menthod returns length of an updated array
+
+2.to add new element at start ---> array.unshift(element)
+this menthod returns length of an updated array
+
+3. to remove element from end ---> array.pop(element)
+this menthod returns removed element
+
+4. to remove element from start ---> array.shift(element)
+this menthod returns removed element
+
+5. to get index of perticular element ---> array.inddexOf(element); // return -1 if element not found
+
+6. to check of element is present or not in array ---> array.includes(element); //Boolean (strict equality)
+
+
+========================================================================
+-------------
+Introduction to Objects
+-------------
+- array of key-value pairs
+
+- There are many ways to create Objects
+1. Literal Syntax of creating Object
+    const abhijit = {
+      firstName: "Abhijit",
+      lastName: "Gadakh",
+      age: 2024 - 1996,
+      job: "Programmer",
+      friends: ["Kunal", "Rishikesh", "Anil"],
+    };
+
+-  in above example
+  firstName is key and "Abhijit" is value coresponding to that key
+  friends is key and ["Kunal", "Rishikesh", "Anil"] this whole array is value coresponding to that key
+
+- in objects order of elements doen not matters
+  means you can't retrive elements by order in objects
+
+- HOW TO RETRIVE VALUES FROM Object
+  two ways of retrive values from Object using key
+  1. dot Notation
+  abhijit.firstName will give you "Abhijit"
+  abhijit.friends will give you whole array ["Kunal", "Rishikesh", "Anil"]
+
+  2. Bracket Notation
+  abhijit['firstName'] will give you "Abhijit"
+  abhijit['friends'] will give you whole array ["Kunal", "Rishikesh", "Anil"]
+
+  in Bracket Notation you have to pass key in a string from
+  which sometime useful when you have to concat two string to get keyname
+
+  e.g. user will say first or last accordingly you have to console log firstname of last name:
+
+  let userReply = "last";
+  console.log(abhijit[userReply + "Name"]);
+
+- if js compiler do not find key it'll say undefined
+  e.g. abhijit.city // it will be undefined
+
+- How to add new properties
+  abhijit.location = "Pune";
+  abhijit['twitter'] = "@abhijitgadakh1";
+
+
+  --- Object Methods ---
+
+- adding method in objects
+- using this keyword
+
+  const john = {
+  name: "John",
+  mass: 92,
+  height: 1.95,
+  CalcBMI: function () {
+    if (!this.bmi) {
+      this.bmi = this.mass / this.height ** 2;
+    }
+    return this.bmi;
+  },
+};
+
+--- The for Loop ---
+
+for (let rep = 1; rep <= 10; rep++) {
+  console.log(`Lifting weights repetition ${rep} 💪`);
+}
+
+--- The for Loop inside for Loop ---
+
+for (let exercise = 1; exercise <= 3; exercise++) {
+  console.log("------------Strating Exercise No: " + exercise);
+  for (let rep = 1; rep < 6; rep++) {
+    console.log(`Exercise ${exercise}: Lifting weights repetition ${rep} 💪`);
+  }
+}
+
+
+--- The while Loop ---
+
+let rep = 1;
+while (rep < 6) {
+  console.log(`Lifting weights repetition ${rep} 💪`);
+  rep++;
+}
+
+let dice = Math.trunc(Math.random() * 6) + 1;
+
+while (dice !== 6) {
+  console.log(`You rolled a ${dice} 💪`);
+  dice = Math.trunc(Math.random() * 6) + 1;
+}
