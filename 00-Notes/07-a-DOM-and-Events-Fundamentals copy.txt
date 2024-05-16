@@ -1,0 +1,56 @@
+=====================================================================
+                PROJECT 1 GUESS MY NUMBER
+====================================================================
+
+there are various way to store element in a js variable and manipulate the it.
+
+- one way of holding element in variable with "classname" 
+    document.querySelector('.message')
+    <p class="message">Start guessing...</p>
+
+- To change the text in-side this element use textContent
+    document.querySelector('.message').textContent = "your req text";
+
+
+
+=====================================================================
+            What's the DOM and DOM Manipulation
+=====================================================================
+
+DOM = Document Object Model
+It is a structural representation of HTML document
+Javascript get access to this structure and element inside them to manipulate them
+Each element is called as Node in DOM structure
+
+
+DOM get store by browser at time on html page load. Stored in tree structure format
+
+- top parent is document then it's child is html
+    DOM always starts with the document object at thr top
+    document object is an special object which we get access to in JS
+    This object serves as an entry point into the DOM
+
+
+DOM and DOM Methods are not part of Javascript.
+DOM and DOM Methods are part of web apis
+web apis are the lib which browser implements and can be used by JS
+other web apis which browser implements - > Timer, Fetch, etc
+
+---------------------
+Click Events Listener
+---------------------
+
+addEventListener('click', function (){
+    
+});
+
+
+event handler function
+- the addEventListener's 2nd Parameter expects a function and that function will be called as "event handler function" which will get executed when the perticular event gets trigger
+
+
+---------------------
+CSS Manipulation with JS
+---------------------
+
+document.querySelector('body').style.backgroundColor = '#60b347';

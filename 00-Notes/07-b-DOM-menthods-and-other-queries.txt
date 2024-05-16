@@ -1,0 +1,29 @@
+HTML
+
+1.  document.querySelector('.classname') 
+    OR 
+    document.querySelector('#id') 
+    OR 
+    document.querySelector('elementName') 
+
+2. paragraph element Text changing
+document.querySelector('.classname').textContent = "Your Desire Text"
+
+3. to get value from input aread 
+const value = document.querySelector('.guess').value;
+
+4. to change value of input aread 
+document.querySelector('.guess').value = "New Value";
+
+5. addEventListener on a click
+document.querySelector('.check').addEventListener('click', function () {
+  console.log(document.querySelector('.guess').value);
+});
+
+
+
+
+CSS Manipulation
+
+1.
+document.querySelector('body').style.backgroundColor = '#60b347';
