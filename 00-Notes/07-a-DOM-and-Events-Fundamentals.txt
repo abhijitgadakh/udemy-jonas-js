@@ -54,3 +54,21 @@ CSS Manipulation with JS
 ---------------------
 
 document.querySelector('body').style.backgroundColor = '#60b347';
+
+
+=====================================================================
+                PROJECT 2 MODAL WINDOW
+====================================================================
+
+in add event Listener 2nd Parameter we can also pass function instead of writting in it.
+remember to avoid parentheses () because if you add then that function will get execute directly and will not wait for the event to trigger
+
+for example: 
+
+const closeModal = function () {
+  modal.classList.add('hidden');
+  overlay.classList.add('hidden');
+};
+
+btnCloseModal.addEventListener('click', closeModal);
+overlay.addEventListener('click', closeModal);

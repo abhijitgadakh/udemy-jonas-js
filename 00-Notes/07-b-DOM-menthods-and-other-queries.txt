@@ -20,6 +20,9 @@ document.querySelector('.check').addEventListener('click', function () {
   console.log(document.querySelector('.guess').value);
 });
 
+6. to select more than one element having same class (querySelectorAll)
+const btnsOpenModal = document.querySelectorAll('.show-modal');
+
 
 
 
