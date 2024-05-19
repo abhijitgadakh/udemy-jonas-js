@@ -1,0 +1,313 @@
+=======================================================
+=========== High-Level Overview of JavaScript =========
+=======================================================
+
+1. High-level
+    - Every program need resources (ram, memory, etc)
+    - in JS/PYTHON programmer don't need to manage these resources (in low-level lang. like C or C++ programmer need to manage these resources)
+    - these makes high level languages easy but also code written in this languages will be never as fast/efficient as low-level lang
+
+2. Garbage Collection
+    - In JavaScript, complier automatically removes all un-approachable/ unwanted objects from computer memory
+
+3. Interpreted or just-in-time complied
+    - written code translated into machine code by Interpreter or just-in-time complier
+
+    Complilation Vs Interpretation
+
+    Complilation
+        - Entire code is converted into machine code then execution happens as required
+                    step 1                         step 2
+        CODE ----compilation---> MACHINE CODE (in file) ---execution----> PROGRAM RUNNING
+
+    Interpretation
+        - interpreter runs throgh code and executes the code line by line                       
+        CODE ----execution(line-by-line)----> PROGRAM RUNNING
+
+    - Modern JavaScript uses Just-in-Time(JIT) Complilation
+         Entire code is converted into machine code then execution immediatly
+         it is similar like Complilation but there is no file to execute
+
+4. Multi-Paradigm
+    - 3 types
+        i.   Procedural Programming 
+        ii.  Object-Oriented Programming
+        iii. Functional Programming
+
+    - In JavaScript, All these Paradigm can be used
+
+5. Prototype Based Object-Oriented Programming
+    - Everything in JS is Object expect primitive datatypes
+
+6. First class functions
+    - Functions in JS are treated as variables
+    - We can pass functions into fuctions and return function from functions
+    - this makes js Functional Programming language
+
+7. Dynamically typed language
+    - in js we dont assign datatype to variables. any type of data can be assign to same variable
+
+8. Single threaded and non-blocking event loop
+    - js handles multiple task using single thread. long running task runs in the background js complier put them into main thread once the task is completed
+
+
+
+=======================================================
+============= JavaScript Engine and Runtime ===========
+=======================================================
+
+JavaScript Engine
+    - JavaScript Engine is computer program which execute JavaScript code on browser.
+    - Every browser has it's own JavaScript Engine
+    - Most popular JavaScript Engine is Google's V-Eight
+    - V-Eight powers google chrome also Node js
+
+    - Every JavaScript Engine contains Call stack and Heap area
+    - Call stack is where code get executed
+    - heap is place where all objects get stored
+
+    EXECUTION OF JavaScript CODE
+        1. Your JS code
+        2. parsing - parse in DataStructure called AST (Abstract syntax tree)
+        3. compilation - converts generated AST into Machine code (very unoptimized way so conversion will be done faster)
+        4. Execution
+        5. unoptimized Machine code gets optimized in background While already running program execution (its a loop, old Machine code replaces by new optimized Machine code)
+
+    Different Engines implement this is slightly defferent ways but overall picture of Modern JT Complilation looks like this
+
+
+JavaScript Runtime
+    - made up of JavaScript Engine, Web-APIs, Callback Queue(click, timer, data, etc)
+    - Web-APIs are functionalities provided to the JavaScript Engine
+    - Web-APIs are not part of JavaScript but JavaScript gets access to there APIs throgh the global window object
+    - when perticular even happens. these event function gets store into Callback Queue and when the call stack is empty, these event function get chance to execute in stack
+
+
+JavaScript Runtime (Outside the browser)
+    - as same as above just Web-APIs are not accessable and gets replaces but nodejs which contents c++ binding and thread pool
+
+
+
+========================================================
+========= Execution Contexts and The Call Stack ========
+========================================================
+
+1. after code is complied it enters into global execution context (for top-level code) and the gets executed
+    (Top-level code is a code which is not inside any function)
+2. functions sents to Callback Queue execute when they get called
+3. there will only one global execution context
+
+What's inside execution context?
+    - Each function gets it's own execution context
+
+    1. variable environment 
+        - let const var declarations
+        - Functions
+        - arguments object (this object stores all the arguments passed in that current executation context)
+
+    2. Scope chain - it is consist of references of variable that are outside of current function
+
+    3. execution context gets its own variable called this
+
+    - All above 3 get generated during creation phase, right before execution
+
+    - REMEMBER----> arrow functions do not get its own arguments object and this keyword
+                    arrow function can use it's parent's arguments object and this keyword
+
+
+========================================================
+Lets take look at following code
+
+//------CODE--------
+
+const name = 'Abhijit';
+
+const first = () => {
+  let a = 1;
+  const b = second(7, 9);
+  a += b;
+  return a;
+};
+
+function second(x, y) {
+  var c = 2;
+  return c;
+}
+
+const c = first();
+
+//------CODE--------
+
+- We will get One global execution context and two execution context (one for first() and second for second(x,y))
+
+in creation phase in global execution context following will get stored (not 100% accurate)
+    name = 'Jonas'
+    first = <function>
+    second = <function>
+    x = Unknown
+
+in execution context of first()
+    a = 1
+    b = Unknown
+
+in execution context of second()
+(this is a normal function)
+    arguments : [7, 9]
+    c = 2
+
+Now call stack come in picture (call stack is collection of execution context)
+- Once the code is compile top-level code starts executation and global execution context will be created and get place into stack at bottom
+    in code at bottom const c = first(); line new execution context for first() will be created and get place into stack above global execution context
+    while executing code in first(),  second() is gets called
+    due to which new execution context for second() will be created and get place into stack above execution context (second())
+    when second() starts executing at the end sencond() return value to first and then execution context (second()) will get removed from stack
+    and first() execution context goes on. at the end of first() return value to global executation context and then execution context (first()) will get removed from stack
+    and global executation context goes on and the values which get return from frist() assign to variable x; code ends and global executation context will get removed from stack
+
+========================================================
+=============== Scope and The Scope Chain ==============
+========================================================
+
+Scoping -  controls how variables are organised and accessed.
+
+lexical Scoping - the Scoping is controlled by placement if functions and blocks in code
+
+Scope - area in which certain veriables are declared
+
+In JavaScript there are 3 scopes
+    1. global Scope
+    2. function scope 
+    3. block scope
+
+Scope of a variable - area in which variable is accessable
+
+1. global Scope                 
+    - for top level code  
+    - variable declared outside of any function or block
+
+2. function scope
+    - each function creates its own scope
+    - all the variables declared in this scope are accessable only inside function
+    - also caled as local scopes
+    - from ES6 all functions are block scope
+
+3. block scope
+    - each block also creates its own scope (from ES6)
+    - all let and const variables declared in this scope are accessable only inside function
+    - if you create var variable in block scope,  that variable will be accessable outside this block scope
+    - from ES6 all functions are block scope. which means function declare in block scope are only accessable inside that block only
+    - let, const and function are block scope variables
+    
+- every scope has access of all varible declared in it's parent scope
+    but dont have access of sibling scopes 
+
+- but scope cant have access to varible declared in it child's component
+
+- variable look up
+    when varible not found in it scope it'll go to it's parent component and look if not found then it will look at it's parents component
+    only look up and not look down
+
+
+
+EXAMPLE
+
+function first(){
+
+    const age = 29;
+
+    if(age> 18){
+        var millenial = true;
+    }
+}
+
+only let and const are block scope and var is function scope
+variable millenial is declared using var so it will be consider as a part of first() function scope
+
+
+- Scope chain and Call Stack has no relation
+refer Image res/08 - 01 -Scope chain vs. Call Stack
+
+also check Image res/08 - 02 Summery
+
+
+========================================================
+======== Variable Environment Hoisting & The TDZ =======
+========================================================
+
+Execution context always content - variable env, scope chain and this keyword
+
+Hoisting -  makes some variable accessible in code before the are actually declared/
+
+How - at top-level-code code get scanned for variable declarations and for each variable gets stored at variable environment object
+
+refer Image 
+TDZ - Temporal dead zone (ES6 to avoid errors)
+
+variable declare with var are get store in window object
+
+
+========================================================
+===================== this keyword ====================
+========================================================
+
+this keyword is a special veriable created for every execution context
+
+methods -> this will be the objec on this method is got called
+function -> this will be undefined(only in strict mode else this -> window object)
+arrow function -> they dont get own this keyword. in arrow this == parent function's this
+
+eventlistener -> dom element that even is attached
+
+-When in object you create an arrow funtion and in that function if you use this keyword it will refer to outer scope's this object(Window)
+-best practice is to avoid arrow functions in object as a method
+
+const addExpr = function (a, b) {
+  return a + b;
+};
+
+
+========================================================
+========= Regular Functions vs. Arrow Functions =======
+========================================================
+
+THIS KEYWORD
+- in object if you use function in a method, it will get it's own this keyword and this will no longer refer to the object in such cases
+    i. either create variable before the function 
+        let self = this;
+    and use that variable in function
+
+    ii. or use arrow function because arrow function dont get it own this keyword and this keyword inside arrow function will refer to outerscopes this keyword
+
+ARGUMENTS KEYWORD
+
+- you can add more parameters that assigned arguments in function
+
+e.g 
+const addExpr = function (a, b) {
+  return a + b;
+};
+
+addExpr(3, 4, 5, 6);
+
+there are 4 arguments and only 2 parameters
+still its totally legal
+remaining arguments will not get store in variable but you can access then using arguments array
+
+
+
+- arrow function dont get its own arguments keyword
+so if you try to use you will get error
+
+
+========================================================
+========= Primitives vs. Objects/reference type =======
+========================================================
+
+how Primitives values and ref values get store in memory
+
+copy of value and copy of reference
+
+
+const marriedJessica = Object.assign({}, jessica);
+
+Object.assign() creates shallow copy and deep clone. which works on only on first-level
